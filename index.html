@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starmap — Sol Sector</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="map"></canvas>
+
+<div id="hud">
+  <div id="status"></div>
+
+  <section id="panel-left" class="panel">
+    <h1>STARMAP <span>SOL SECTOR · 100 SYSTEMS</span></h1>
+    <input id="search" type="search" placeholder="Search systems…  ( / )" autocomplete="off" spellcheck="false">
+    <div id="list-title" class="subhead"></div>
+    <ul id="list"></ul>
+  </section>
+
+  <section id="panel-right" class="panel hidden">
+    <button id="close-info" class="icon" title="Close (Esc)">×</button>
+    <h2 id="info-name"></h2>
+    <div id="info-spec" class="spec"></div>
+    <dl id="info-dl"></dl>
+    <div id="route-summary" class="route"></div>
+    <div class="actions">
+      <button id="btn-focus" title="Centre the view on this system (F)">Focus</button>
+      <button id="btn-jump" class="primary" title="Travel here along the plotted route (J)">Jump</button>
+    </div>
+  </section>
+
+  <section id="toolbar" class="panel">
+    <label>Jump range
+      <input id="range" type="range" min="4" max="30" step="0.5" value="10">
+      <output id="range-out">10.0 ly</output>
+    </label>
+    <div class="toggles">
+      <label><input type="checkbox" id="tg-labels" checked> Labels</label>
+      <label><input type="checkbox" id="tg-stalks" checked> Stalks</label>
+      <label><input type="checkbox" id="tg-grid" checked> Grid</label>
+      <label><input type="checkbox" id="tg-rings" checked> Rings</label>
+    </div>
+    <button id="btn-topdown" title="Toggle top-down / tilted view (T)">Top-down</button>
+    <button id="btn-reset" title="Reset the view (R)">Reset view</button>
+    <button id="btn-help" title="Controls and legend (?)">?</button>
+  </section>
+
+  <div id="readout"></div>
+
+  <section id="help" class="panel hidden">
+    <h3>CONTROLS</h3>
+    <table>
+      <tr><td>Drag</td><td>Pan across the galactic plane</td></tr>
+      <tr><td>Right-drag / Shift-drag</td><td>Rotate and tilt the map</td></tr>
+      <tr><td>Wheel / pinch</td><td>Zoom toward the cursor</td></tr>
+      <tr><td>Click · Double-click</td><td>Select a system · select and focus</td></tr>
+      <tr><td>Arrows / WASD · Q E</td><td>Pan · rotate</td></tr>
+      <tr><td>+ − · T · R · C</td><td>Zoom · top-down · reset view · centre on current location</td></tr>
+      <tr><td>F · J · Esc · /</td><td>Focus selection · jump · clear · search</td></tr>
+    </table>
+    <h3>LEGEND</h3>
+    <div class="legend">
+      <span><i style="background:#f0f3ff"></i>A white</span>
+      <span><i style="background:#fff4e8"></i>F yellow-white</span>
+      <span><i style="background:#fff2a8"></i>G yellow</span>
+      <span><i style="background:#ffd2a1"></i>K orange</span>
+      <span><i style="background:#ff9e6b"></i>M red dwarf</span>
+      <span><i style="background:#d07050"></i>L brown dwarf</span>
+      <span><i style="background:#a06cd8"></i>T brown dwarf</span>
+      <span><i style="background:#6a4bb5"></i>Y brown dwarf</span>
+      <span><i style="background:#dfe9ff"></i>D white dwarf</span>
+    </div>
+    <p>Stalks drop each star to the galactic plane: <b style="color:#8cbeff">blue</b> above the plane, <b style="color:#ffa078">orange</b> below. The dashed <b style="color:#ffb347">amber</b> ring is your jump range; dim stars cannot be reached with it. The <b style="color:#7cfc9a">green</b> dashed line is the plotted route; amber dots mark your trail.</p>
+    <p>Axes: +X points toward the galactic centre, +Y along galactic rotation, +Z toward the north galactic pole. Distances are in light-years.</p>
+    <div class="actions"><button id="btn-help-close">Close</button></div>
+  </section>
+</div>
+
+<script src="js/stars.js"></script>
+<script src="js/starmap.js"></script>
+</body>
+</html>
